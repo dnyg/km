@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+
+import Navbar from './pages/Navbar';
+
+import ViewTransactions from './pages/ViewTransactions';
+import CreateTransaction from './pages/CreateTransaction';
+
+import axios from 'axios';
+axios.defaults.baseURL = "http://localhost:8080/";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+          <Router>
+              <Navbar />
+              <Routes>
+                  <Route path="/view" element={ViewTransactions} />
+                  <Route path="/creat" element={CreateTransaction} />
+              </Routes>
+          </Router>
+      </div>
   );
 }
 
